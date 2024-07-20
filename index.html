@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebrielectric</title>
+    <link rel="stylesheet" type="text/css" href="estilo_index.css" />
+    <link rel="icon" href="fotos/loguito.png">
+    <script src="traduccion_index.js"></script>
+    <script src="funciones_index.js"></script>
+    <script>
+        window.onload = function() {
+            loadLanguage(); // Cargar el idioma seleccionado al cargar la página
+        };
+    </script>
+    <style>
+        /* Estilo inicial para ocultar los elementos */
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+
+
+
+        @media (max-width: 768px) {
+            .map-container {
+                padding-bottom: 20%; /* Aspect ratio for smaller screens */
+            }
+        }
+
+        #direccion {
+            margin-bottom: 0px;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%; /* Aspect ratio 4:3 */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 3em;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        @media (min-width: 1024px) {
+            .map-container {
+                padding-bottom: 30%; /* Aún más pequeño en pantallas más grandes */
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 30%; /* Ancho máximo del contenedor en pantallas grandes */
+            }
+        }
+
+        @media (max-width: 767px) {
+            /* Estilos para pantallas móviles */
+            nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 0;
+            }
+
+            nav ul li {
+                width: calc(50% - 20px); /* Dos elementos por fila */
+                margin: 0 10px; /* Espacio entre elementos */
+                text-align: center;
+                box-sizing: border-box; /* Para que el padding no incremente el ancho */
+                margin-bottom: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img id="logo" src="fotos/loguito.png" alt="Logo de Lebrielectric">
+        <h1 data-translate-key="header_title">Lebrielectric</h1>
+        <nav>
+            <ul id="cabecera">
+                <li><a href="#servicios" id="servicios-link" data-translate-key="menu_servicios">Servicios</a></li>
+                <li><a href="#direccion" id="contacto-link" data-translate-key="direccion_title">Donde encontrarnos</a></li>
+                <li><a href="#contacto" id="contacto-link" data-translate-key="menu_contacto">Contacto</a></li>
+                <li><a href="dronessur.html" id="drones-link" data-translate-key="menu_drones">Filmación con Drones</a></li>
+            </ul>
+        </nav>
+        <div id="language">
+            <select id="languageSelect" onchange="translatePage()">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="sv">Svenska</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
+    </header>
+    
+    <section id="intro">
+        <h2 data-translate-key="intro_title">¡Más de 20 años de experiencia!</h2>
+        <p id="introduccion" data-translate-key="intro_text">Somos Lebrielectric, una empresa dedicada a proporcionar servicios eléctricos y soluciones de domótica.<br> 
+            Con más de dos décadas de experiencia, nos enorgullece cuidar cada detalle para garantizar la satisfacción de nuestros clientes.<br>
+            Mantenemos una formalidad y profesionalidad ejemplares en todos nuestros proyectos, brindando servicios de la más alta calidad.<br> 
+            ¡Confía en nosotros para todas tus necesidades eléctricas y de domótica!</p>
+    </section>
+    
+    <section id="servicios" class="animated hidden">
+        <h2 id="servicios-text" data-translate-key="servicios_title">Ofrecemos una amplia gama de servicios eléctricos, incluyendo:</h2>
+        <ul id="servicios_prestados">
+            <li data-translate-key="servicios_item1">Instalaciones eléctricas en general</li>
+            <li data-translate-key="servicios_item2">Instalaciones Domóticas KNX</li>
+            <li data-translate-key="servicios_item3">Sistemas de recarga de vehículos eléctricos</li>
+            <li data-translate-key="servicios_item4">Estudios de ahorros energéticos</li>
+            <li data-translate-key="servicios_item5">Servicios Profesionales con Drones</li>
+            <li data-translate-key="servicios_item6">Imágenes, filmaciones y levantamientos aéreos</li>
+        </ul>
+    </section>
+    
+    <section id="banner" class="slideshow-container" class="animated hidden">
+        <h2 id="nuestros_trabajos" data-translate-key="trabajos_title">Algunos de nuestros trabajos</h2>
+        <div class="mySlides active">
+            <img src="" alt="Trabajos">
+        </div>
+        <div class="mySlides">
+            <img src="" alt="Trabajos">
+        </div>
+
+        <!-- Botones de navegación debajo de las imágenes -->
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </section>    
+
+    <section id="direccion" class="animated hidden">
+        <h2 id="direccion-text" data-translate-key="direccion_title">Donde encontrarnos</h2>      
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3207.704026922238!2d-4.98852252363047!3d36.48886408518679!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd732a19f3a1378d%3A0xb5b009e22d0f4e27!2sLebrielectric%20Sl.!5e0!3m2!1ses!2ses!4v1719853408141!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>        
+        <div class="direccion-info">
+            <a href="https://www.google.com/maps/dir//Lebrielectric+Sl.,+Calle+Juan+Illesca+Pav%C3%B3n,+21,+29670+San+Pedro+Alc%C3%A1ntara,+M%C3%A1laga/@36.4888598,-4.9859476,17z/data=!3m1!5s0xd732a19f3a1378d:0xb5b009e22d0f4e27!4m9!4m8!1m0!1m5!1m1!1s0xd732a19f3a1378d:0xb5b009e22d0f4e27!2m2!1d-4.9859476!2d36.4888598!3e0?entry=ttu" target="_blank" data-translate-key="direccion_direccion">Juan Illesca Pavón, 21, 29670 San Pedro Alcántara, Málaga</a>
+        </div>  
+    </section>
+
+    <section id="contacto" class="animated hidden">
+        <h2 id="contacto-text" data-translate-key="contacto_title">Puede contactarnos a través de</h2>
+        <ul>
+            <li><strong data-translate-key="contacto_telefono">Teléfono:</strong> <a href="tel:+34666356185">666 35 61 85</a></li>
+            <li><strong data-translate-key="contacto_email">Email:</strong> <a href="mailto:lebrielectric@gmail.com">lebrielectric@gmail.com</a></li>
+        </ul>
+    </section>
+    
+    <footer>
+        <p>&copy; Lebrielectric - <span data-translate-key="footer_derechos">Todos los derechos reservados.</span></p>
+    </footer>
+</body>
+</html>
